@@ -35,7 +35,7 @@ CreateThread(function()
 			end
 		end
 	
-        local pos = GetPedBoneCoords(PlayerPedId(), 57005, 0.0, 0.0, 0.0)
+		local pos = GetPedBoneCoords(PlayerPedId(), 57005, 0.0, 0.0, 0.0)
 		local pitch_u = math.max(0.0, GetGameplayCamRelativePitch())
 		local pitch_d = math.max(0.0, -GetGameplayCamRelativePitch())
 		local h = GetEntityHeading(PlayerPedId()) - 167.1
