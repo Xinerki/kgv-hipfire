@@ -1,18 +1,24 @@
 
+-- Define what weapon CATEGORIES are allowed to hipfire
 categories = {
-	[860033945] = true,
-	[970310034] = true,
-	[1159398588] = true,
-	[3082541095] = true,
-	[-1212426201] = true,
+	[860033945] = true, -- SHOTGUN
+	[970310034] = true, -- ASSAULT RIFLE
+	[1159398588] = true, -- LIGHT MACHINE GUN
+	[3082541095] = true, -- SNIPER
+	[-1212426201] = true, -- SNIPER TOO I THINK??
 }
 
+-- Define individual WEAPONS that are allowed to hipfire
 weapons = {
+	-- Grenade Launcher is a 'heavy', so is the rpg, but we don't want to hipfire that
 	[`WEAPON_GRENADELAUNCHER`] = true
 }
 
+-- Define individual WEAPONS that aren't allowed to hipfire
+-- This and 'weapons' above bypasses category.
 weapons_disabled = {}
 
+-- the code
 CreateThread(function()
 	while true do Wait(0)
 		for i,v in pairs(GetActivePlayers()) do
