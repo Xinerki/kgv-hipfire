@@ -11,7 +11,11 @@ categories = {
 -- Define individual WEAPONS that are allowed to hipfire
 weapons = {
 	-- Grenade Launcher is a 'heavy', so is the rpg, but we don't want to hipfire that
-	[`WEAPON_GRENADELAUNCHER`] = true
+	[`WEAPON_GRENADELAUNCHER`] = true,
+	
+	-- Railgun is a 'heavy' but is fine to hipfire
+	[`WEAPON_RAILGUN`] = true,
+	[`WEAPON_RAILGUNXM3`] = true,
 }
 
 -- Define individual WEAPONS that aren't allowed to hipfire
