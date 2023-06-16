@@ -22,6 +22,9 @@ weapons = {
 -- This and 'weapons' above bypasses category.
 weapons_disabled = {}
 
+-- you don't need this, look away
+debug_render = false
+
 -- the code
 CreateThread(function()
 	while true do Wait(0)
@@ -32,15 +35,49 @@ CreateThread(function()
 				local pitch_u = Player(GetPlayerServerId(v)).state.hipfire_pitch_u or 0.0
 				local pitch_d = Player(GetPlayerServerId(v)).state.hipfire_pitch_d or 0.0
 				local h = GetEntityHeading(ped) - 167.1
+			
+				if debug_render then
+					DrawMarker(
+						28,
+						pos,
+						0.0, 0.0, 0.0,
+						0.0, 0.0, 0.0,
+						vec(1.0, 1.0, 1.0) * 0.05,
+						64, 64, 255, 64,
+						false, false, 0, false
+					)
+				end
 				
 				local off = vec(math.sin(math.rad(-h)), math.cos(math.rad(-h))) * 0.25 * (1.0 - pitch_u / 90.0)
 				pos += vec(off.x, off.y, 0.0) -- * (1.0 - pitch_d / 90.0)
 				pos += vec(0.0, 0.0, -0.25) * (1.0 - pitch_d / 90.0) / (1.0 - pitch_u / 180.0)
+			
+				DrawMarker(
+					28,
+					pos,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					vec(1.0, 1.0, 1.0) * 0.05,
+					255, 0, 0, 64,
+					false, false, 0, false
+				)
 				
 				local hipfiring = Player(GetPlayerServerId(v)).state.hipfire
 				
 				if hipfiring then
 					SetIkTarget(ped, 4, nil, nil, pos.x, pos.y, pos.z, 0.0, 200, 200)
+			
+					if debug_render then
+						DrawMarker(
+							28,
+							pos,
+							0.0, 0.0, 0.0,
+							0.0, 0.0, 0.0,
+							vec(1.0, 1.0, 1.0) * 0.1,
+							0, 255, 0, 64,
+							false, false, 0, false
+						)
+					end
 				end
 			end
 		end
@@ -49,10 +86,34 @@ CreateThread(function()
 		local pitch_u = math.max(0.0, GetGameplayCamRelativePitch())
 		local pitch_d = math.max(0.0, -GetGameplayCamRelativePitch())
 		local h = GetEntityHeading(PlayerPedId()) - 167.1
+			
+		if debug_render then
+			DrawMarker(
+				28,
+				pos,
+				0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0,
+				vec(1.0, 1.0, 1.0) * 0.05,
+				64, 64, 255, 64,
+				false, false, 0, false
+			)
+		end
 		
 		local off = vec(math.sin(math.rad(-h)), math.cos(math.rad(-h))) * 0.25 * (1.0 - pitch_u / 90.0)
 		pos += vec(off.x, off.y, 0.0) -- * (1.0 - pitch_d / 90.0)
 		pos += vec(0.0, 0.0, -0.25) * (1.0 - pitch_d / 90.0) / (1.0 - pitch_u / 180.0)
+		
+		if debug_render then
+			DrawMarker(
+				28,
+				pos,
+				0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0,
+				vec(1.0, 1.0, 1.0) * 0.05,
+				255, 0, 0, 64,
+				false, false, 0, false
+			)
+		end
 		
 		local hipfiring = not IsPedRunningMeleeTask(PlayerPedId()) and not IsPedGoingIntoCover(PlayerPedId()) and not IsPedInCover(PlayerPedId()) and not IsPedReloading(PlayerPedId()) and IsAimCamActive() and not IsControlPressed(0, 25) and not IsControlPressed(0, 37)
 		
@@ -64,6 +125,18 @@ CreateThread(function()
 		
 		if hipfiring then
 			SetIkTarget(PlayerPedId(), 4, nil, nil, pos.x, pos.y, pos.z, 0.0, 200, 200)
+			
+			if debug_render then
+				DrawMarker(
+					28,
+					pos,
+					0.0, 0.0, 0.0,
+					0.0, 0.0, 0.0,
+					vec(1.0, 1.0, 1.0) * 0.1,
+					0, 255, 0, 64,
+					false, false, 0, false
+				)
+			end
 		end
 		
 		LocalPlayer.state:set('hipfire', hipfiring, true)
