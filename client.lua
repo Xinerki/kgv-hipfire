@@ -1,6 +1,6 @@
 
--- Define what weapon CATEGORIES are allowed to hipfire
-categories = {
+-- Define what weapon GROUPS are allowed to hipfire
+groups = {
 	[860033945] = true, -- SHOTGUN
 	[970310034] = true, -- ASSAULT RIFLE
 	[1159398588] = true, -- LIGHT MACHINE GUN
@@ -57,9 +57,9 @@ CreateThread(function()
 		local hipfiring = not IsPedRunningMeleeTask(PlayerPedId()) and not IsPedGoingIntoCover(PlayerPedId()) and not IsPedInCover(PlayerPedId()) and not IsPedReloading(PlayerPedId()) and IsAimCamActive() and not IsControlPressed(0, 25) and not IsControlPressed(0, 37)
 		
 		local _, wep = GetCurrentPedWeapon(PlayerPedId())
-		local category = GetWeapontypeGroup(wep)
+		local group = GetWeapontypeGroup(wep)
 		
-		hipfiring = hipfiring and (weapons[wep] or categories[category])
+		hipfiring = hipfiring and (weapons[wep] or groups[group])
 		hipfiring = hipfiring and not weapons_disabled[wep]
 		
 		if hipfiring then
