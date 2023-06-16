@@ -52,15 +52,17 @@ CreateThread(function()
 				pos += vec(off.x, off.y, 0.0) -- * (1.0 - pitch_d / 90.0)
 				pos += vec(0.0, 0.0, -0.25) * (1.0 - pitch_d / 90.0) / (1.0 - pitch_u / 180.0)
 			
-				DrawMarker(
-					28,
-					pos,
-					0.0, 0.0, 0.0,
-					0.0, 0.0, 0.0,
-					vec(1.0, 1.0, 1.0) * 0.05,
-					255, 0, 0, 64,
-					false, false, 0, false
-				)
+				if debug_render then
+					DrawMarker(
+						28,
+						pos,
+						0.0, 0.0, 0.0,
+						0.0, 0.0, 0.0,
+						vec(1.0, 1.0, 1.0) * 0.05,
+						255, 0, 0, 64,
+						false, false, 0, false
+					)
+				end
 				
 				local hipfiring = Player(GetPlayerServerId(v)).state.hipfire
 				
