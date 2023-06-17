@@ -34,7 +34,7 @@ CreateThread(function()
 				local pos = GetPedBoneCoords(ped, 57005, 0.0, 0.0, 0.0)
 				local pitch_u = Player(GetPlayerServerId(v)).state.hipfire_pitch_u or 0.0
 				local pitch_d = Player(GetPlayerServerId(v)).state.hipfire_pitch_d or 0.0
-				local h = GetEntityHeading(ped) - 167.1
+				local h = GetEntityHeading(ped) - 161.3
 			
 				if debug_render then
 					DrawMarker(
@@ -48,7 +48,7 @@ CreateThread(function()
 					)
 				end
 				
-				local off = vec(math.sin(math.rad(-h)), math.cos(math.rad(-h))) * 0.25 * (1.0 - pitch_u / 90.0)
+				local off = vec(math.sin(math.rad(-h)), math.cos(math.rad(-h))) * 0.15 * (1.0 - pitch_u / 90.0)
 				pos += vec(off.x, off.y, 0.0) -- * (1.0 - pitch_d / 90.0)
 				pos += vec(0.0, 0.0, -0.25) * (1.0 - pitch_d / 90.0) / (1.0 - pitch_u / 180.0)
 			
@@ -87,8 +87,8 @@ CreateThread(function()
 		local pos = GetPedBoneCoords(PlayerPedId(), 57005, 0.0, 0.0, 0.0)
 		local pitch_u = math.max(0.0, GetGameplayCamRelativePitch())
 		local pitch_d = math.max(0.0, -GetGameplayCamRelativePitch())
-		local h = GetEntityHeading(PlayerPedId()) - 167.1
-			
+		local h = GetEntityHeading(PlayerPedId()) - 161.3
+		
 		if debug_render then
 			DrawMarker(
 				28,
@@ -101,7 +101,7 @@ CreateThread(function()
 			)
 		end
 		
-		local off = vec(math.sin(math.rad(-h)), math.cos(math.rad(-h))) * 0.25 * (1.0 - pitch_u / 90.0)
+		local off = vec(math.sin(math.rad(-h)), math.cos(math.rad(-h))) * 0.15 * (1.0 - pitch_u / 90.0)
 		pos += vec(off.x, off.y, 0.0) -- * (1.0 - pitch_d / 90.0)
 		pos += vec(0.0, 0.0, -0.25) * (1.0 - pitch_d / 90.0) / (1.0 - pitch_u / 180.0)
 		
