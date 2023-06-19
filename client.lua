@@ -22,12 +22,12 @@ weapons = {
 -- This and 'weapons' above bypasses category.
 weapons_disabled = {}
 
--- you don't need this, look away
-debug_render = false
-
 -- the code
 CreateThread(function()
 	while true do Wait(0)
+		-- you don't need this, look away
+		debug_render = GlobalState.debug
+		
 		for i,v in pairs(GetActivePlayers()) do
 			local ped = GetPlayerPed(v)
 			if ped ~= PlayerPedId() then
