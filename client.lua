@@ -3,6 +3,7 @@
 groups = {
 	[860033945] = true, -- SHOTGUN
 	[970310034] = true, -- ASSAULT RIFLE
+	[-957766203] = true, -- SUBMACHINE GUN
 	-- [1159398588] = true, -- LIGHT MACHINE GUN
 	[3082541095] = true, -- SNIPER
 	[-1212426201] = true, -- SNIPER TOO I THINK??
@@ -20,7 +21,13 @@ weapons = {
 
 -- Define individual WEAPONS that aren't allowed to hipfire
 -- This and 'weapons' above bypasses category.
-weapons_disabled = {}
+weapons_disabled = {
+	-- These are the only SMGs that won't like this hipfire
+	[`WEAPON_MICROSMG`] = true,
+	[`WEAPON_TACTICALSMG`] = true,
+	[`WEAPON_MINISMG`] = true,
+	[`WEAPON_GUSENBERG`] = true,
+}
 
 -- the code
 CreateThread(function()
