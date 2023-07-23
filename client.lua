@@ -24,9 +24,10 @@ weapons = {
 weapons_disabled = {
 	-- These are the only SMGs that won't like this hipfire
 	[`WEAPON_MICROSMG`] = true,
-	[`WEAPON_TACTICALSMG`] = true,
+	[`WEAPON_TECPISTOL`] = true,
 	[`WEAPON_MINISMG`] = true,
 	[`WEAPON_GUSENBERG`] = true,
+	[`WEAPON_MACHINEPISTOL`] = true,
 }
 
 -- the code
