@@ -31,6 +31,10 @@ weapons_disabled = {
 }
 
 -- the code
+
+last_sync = 0
+sync_interval = 100 -- sync every nth ms
+
 CreateThread(function()
 	while true do Wait(0)
 		-- you don't need this, look away
@@ -149,8 +153,10 @@ CreateThread(function()
 			end
 		end
 		
-		LocalPlayer.state:set('hipfire', hipfiring, true)
-		LocalPlayer.state:set('hipfire_pitch_u', pitch_u, true)
-		LocalPlayer.state:set('hipfire_pitch_d', pitch_d, true)
+		if last_sync + sync_interval > GetGameTimer() then
+			LocalPlayer.state:set('hipfire', hipfiring, true)
+			LocalPlayer.state:set('hipfire_pitch_u', pitch_u, true)
+			LocalPlayer.state:set('hipfire_pitch_d', pitch_d, true)
+		end
 	end
 end)
