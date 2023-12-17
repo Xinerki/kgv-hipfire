@@ -153,10 +153,11 @@ CreateThread(function()
 			end
 		end
 		
-		if last_sync + sync_interval > GetGameTimer() then
+		if GetGameTimer() > last_sync + sync_interval then
 			LocalPlayer.state:set('hipfire', hipfiring, true)
 			LocalPlayer.state:set('hipfire_pitch_u', pitch_u, true)
 			LocalPlayer.state:set('hipfire_pitch_d', pitch_d, true)
+			last_sync = GetGameTimer()
 		end
 	end
 end)
