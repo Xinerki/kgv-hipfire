@@ -139,6 +139,9 @@ CreateThread(function()
 		
 		if hipfiring then
 			SetIkTarget(PlayerPedId(), 4, nil, nil, pos.x, pos.y, pos.z, 0.0, 200, 200)
+
+			-- hide crosshair!
+			HideHudComponentThisFrame(14)
 			
 			if debug_render then
 				DrawMarker(
