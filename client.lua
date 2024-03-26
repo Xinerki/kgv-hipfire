@@ -44,10 +44,11 @@ CreateThread(function()
 			local ped = GetPlayerPed(v)
 			if ped ~= PlayerPedId() then
 				local pos = GetPedBoneCoords(ped, 57005, 0.0, 0.0, 0.0)
-				local pitch_u = Player(GetPlayerServerId(v)).state.hipfire_pitch_u or 0.0
-				local pitch_d = Player(GetPlayerServerId(v)).state.hipfire_pitch_d or 0.0
 				local h = GetEntityHeading(ped) - 161.3
-			
+				
+				local pitch_u = Entity(ped).state.hipfire_pitch_u or 0.0
+				local pitch_d = Entity(ped).state.hipfire_pitch_d or 0.0
+
 				if debug_render then
 					DrawMarker(
 						28,
@@ -76,7 +77,7 @@ CreateThread(function()
 					)
 				end
 				
-				local hipfiring = Player(GetPlayerServerId(v)).state.hipfire
+				local hipfiring = Entity(ped).state.hipfire
 				
 				if hipfiring then
 					SetIkTarget(ped, 4, nil, nil, pos.x, pos.y, pos.z, 0.0, 200, 200)
@@ -157,9 +158,10 @@ CreateThread(function()
 		end
 		
 		if GetGameTimer() > last_sync + sync_interval then
-			LocalPlayer.state:set('hipfire', hipfiring, true)
-			LocalPlayer.state:set('hipfire_pitch_u', pitch_u, true)
-			LocalPlayer.state:set('hipfire_pitch_d', pitch_d, true)
+			Entity(PlayerPedId()).state:set('hipfire', hipfiring, true)
+			Entity(PlayerPedId()).state:set('hipfire_pitch_u', pitch_u, true)
+			Entity(PlayerPedId()).state:set('hipfire_pitch_d', pitch_d, true)
+
 			last_sync = GetGameTimer()
 		end
 	end
